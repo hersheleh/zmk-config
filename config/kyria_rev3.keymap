@@ -8,10 +8,12 @@
 #define SYM     1
 #define NAV     2
 #define BT      3
+#define NUMPAD  4
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 // Uncomment this block if using RGB
 /* &led_strip { */
@@ -40,15 +42,15 @@
 
         default_layer {
             // ----------------------------------------------------------------------------------------------------------------------------------------------
-            // | TAB      |  Q  |  W  |  E   |  R   |  T       |                                                    |   Y   |  U    |  I    |  O   |   P   | BSPC   |
-            // | CTRL/ESC |  A  |  S  |  D   |  F   |  G       |                                                    |   H   |  J    |  K    |  L   |   ;   |   '    |
-            // | LSHIFT   |  Z  |  X  |  C   |  V   |  B       |    [        | L SHIFT |        | L SHIFT |    ]    |   N   |  M    |  ,    |  .   |   /   | RSHIFT |
-            //                        |  BT  | DEL  | CTL\SPC  |  ALT\RET  |   NAV   |        |   SYM   |   TAB   | SPACE | BSPC  | R-ALT |
+            // | TAB      | Q | W | E  | R  | T   |                                                  |  Y    | U    | I     | O |  P  |  BSPC  |
+            // | CTRL/ESC | A | S | D  | F  | G   |                                                  |  H    | J    | K     | L |  ;  |    '   |
+            // | LSHIFT   | Z | X | C  | V  | B   |    [    | L-SHIFT |            | L-SHIFT |   ]   |  N    | M    | ,     | . |  /  | RSHIFT |
+            //                         | BT | DEL | CTL\SPC | ALT\RET | NAV |      | SYM     |  TAB  | SPACE | BSPC | R-ALT |
             bindings = <
-            &kp TAB        &kp Q  &kp W   &kp E     &kp R    &kp T                                                         &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC
-            &mt LCTRL ESC  &kp A  &kp S   &kp D     &kp F    &kp G                                                         &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp SQT
-            &kp LSHFT      &kp Z  &kp X   &kp C     &kp V    &kp B          &kp LBKT     &kp LSHFT     &kp LSHFT &kp RBKT  &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHIFT
-                                          &mo BT    &kp LALT &mt LCTL SPACE &mt LALT RET &mo NAV       &mo SYM   &kp TAB   &kp SPACE &kp BSPC &kp RALT
+            &kp TAB        &kp Q  &kp W   &kp E     &kp R     &kp T                                                         &kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC
+            &mt LCTRL ESC  &kp A  &kp S   &kp D     &kp F     &kp G                                                         &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp SQT
+            &kp LSHFT      &kp Z  &kp X   &kp C     &kp V     &kp B          &kp LBKT     &kp LSHFT     &kp LSHFT &kp RBKT  &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHIFT
+                                          &mo BT    &kp LGUI  &mt LCTL SPACE &mt LALT RET &mo NAV       &mo SYM   &kp RALT   &kp SPACE &kp DEL &kp RALT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -58,13 +60,13 @@
           // ---------------------------------------------------------------------------------------------------------------------------------
           // |   `    |  1   |  2   |   3   |   4   |  5    |                                      |  6  |  7   |   8  |   9   |  0  |   =   |
           // |   ~    |  !   |   @  |   #   |  $    |   %   |                                      |  ^  |  &   |   *  |   (   |  )  |   +   |
-          // |   |    |  \   |  :   |   ;   |  -    |   [   |   {   |    |              |    |  }  |  ]  |  _   |   ,  |   .   |  /  |  ?    |
-          //                        |       |       |       |       |    |              |    |     |       |     |      |
+          // |   |    |  \   |  :   |   ;   |  -    |   [   |   {   |    |              |    |  }  |  ]  |  _   |   ,  |   .   |  /  |   ?   |
+          //                        |       |       |       |       |    |              |    |     |     |     |      |
           bindings = <
-          &kp GRAVE &kp N1   &kp N2    &kp N3   &kp N4    &kp N5                                         &kp N6    &kp N7   &kp N8   &kp N9   &kp N0   &kp EQUAL
-          &kp TILDE &kp EXCL &kp AT    &kp HASH &kp DLLR  &kp PRCNT                                      &kp CARET &kp AMPS &kp STAR &kp LPAR &kp RPAR &kp PLUS
-          &kp PIPE  &kp BSLH &kp COLON &kp SEMI &kp MINUS &kp LBKT  &kp LBRC &none     &none &kp RBRC &kp RBKT &kp UNDER &kp COMMA &kp DOT &kp SLASH &kp QMARK &kp
-                                       &none    &none     &none     &none    &none     &none &none    &none &none &none
+          &kp GRAVE &kp N1   &kp N2    &kp N3   &kp N4    &kp N5                                        &kp N6    &kp N7    &kp N8    &kp N9   &kp N0    &kp EQUAL
+          &kp TILDE &kp EXCL &kp AT    &kp HASH &kp DLLR  &kp PRCNT                                     &kp CARET &kp AMPS  &kp STAR  &kp LPAR &kp RPAR  &kp PLUS
+          &kp PIPE  &kp BSLH &kp COLON &kp SEMI &kp MINUS &kp LBKT  &kp LBRC &trans     &trans &kp RBRC &kp RBKT  &kp UNDER &kp COMMA &kp DOT  &kp SLASH &kp QMARK
+                                       &trans   &trans    &trans    &trans   &trans     &trans &trans   &trans &trans &trans
           >;
 
         };
@@ -76,26 +78,39 @@
           // |       |     |     |      |      |      |    |     |    |         |         |       |       |       |        |         |      |
           //                     |      |      |      |    |     |    |         |         |       |       |       |
           bindings = <
-          &kp TAB    &none   &none   &none   &none   &none                              &none   &none     &kp UP    &none      &kp C_VOL_UP &none
-          &LCTRL ESC &none   &none   &none   &none   &none                              &none   &kp LEFT  &kp DOWN  &kp RIGHT  &kp C_VOL_DN &none
-          &LSHIFT    &none   &none   &none   &none   &none  &none &none     &none &none &none   &none     &none     &none      &kp C_MUTE   &none
-                                     &none   &none   &none  &none &none     &none &none &none   &none     &none
+          &kp TAB       &trans   &trans   &trans   &trans   &trans                                  &kp PG_UP   &kp HOME  &kp UP    &kp END    &kp C_VOL_UP &trans
+          &mt LCTRL ESC &trans   &trans   &trans   &trans   &trans                                  &kp PG_DN   &kp LEFT  &kp DOWN  &kp RIGHT  &kp C_VOL_DN &trans
+          &kp LSHIFT    &trans   &trans   &trans   &trans   &trans  &trans &trans     &trans &trans &trans   &trans     &trans     &trans      &kp C_MUTE   &trans
+                                          &trans   &trans   &trans  &trans &trans     &trans &trans &trans   &trans     &trans
           >;
-
         };
 
         bluetooth_layer {
-          // -----------------------------------------------------------------------------------------------------------------------------------------
-          // |       |     |     |      |      |      |                                                |       |       |       |      |       |      |
-          // |       |     |     |      |      |      |                                                |       |       |       |      |       |      |
-          // |       |     |     |      |      |      |         |         |        |         |         |       |       |       |      |       |      |
-          //                     |      |      |      |         |         |        |         |         |       |       |       |
+          // -------------------------------------------------------------------------------------------------------------------------------------------
+          // |       |     |     |      | BT_CLR |      |                                                |        |         |        |      |       |      |
+          // |       |     |     |      |        |      |                                                |        | BT_PRV  | BT_NXT |      |       |      |
+          // |       |     |     |      |        |      |         |         |        |         |         |        |         |        |      |
+          //                     |      |        |      |         |         |        |         |         |        |         |        |
           bindings = <
-            &none   &none   &none   &none     &none   &none                               &none &none &none       &none      &none &none
-            &none   &none   &none   &none     &none   &none                               &bt BT_CLR  &bt BT_PRV  &bt BT_NXT &none &none &none
-            &none   &none   &none   &none     &none   &none   &none &none     &none &none &none &none &none       &none      &none &none
-                                    &none     &none   &none   &none &none     &none &none &none &none &none
+            &trans   &trans   &trans   &trans     &bt BT_CLR  &trans                                   &trans &trans      &out OUT_TOG  &trans &trans &trans
+            &trans   &trans   &trans   &trans     &trans      &trans                                   &trans &bt BT_PRV  &bt BT_NXT    &trans &trans &trans
+            &trans   &trans   &trans   &trans     &trans      &trans   &trans &trans     &trans &trans &trans &trans      &trans        &trans &trans &trans
+                                    &trans     &trans         &trans   &trans &trans     &trans &trans &trans &trans    &trans
             >;
+        };
+
+        numpad_layer {
+        // -----------------------------------------------------------------------------------------------------------------------------------------
+        // |       |     |     |      |      |      |                                                |       |       |       |      |       |      |
+        // |       |     |     |      |      |      |                                                |       |       |       |      |       |      |
+        // |       |     |     |      |      |      |         |         |        |         |         |       |       |       |      |       |      |
+        //                     |      |      |      |         |         |        |         |         |       |       |       |
+        bindings = <
+        &trans   &trans   &trans   &trans     &trans   &trans                                   &trans  &kp N7 &kp N8 &kp N9 &trans &trans
+        &trans   &trans   &trans   &trans     &trans   &trans                                   &trans  &kp N4 &kp N5 &kp N6 &trans &trans
+        &trans   &trans   &trans   &trans     &trans   &trans   &trans &trans     &trans &trans &kp N0  &kp N1 &kp N2 &kp N3 &trans &trans
+                                   &trans     &trans   &trans   &trans &trans     &trans &trans &trans &trans &trans
+        >;
         };
 
     };
