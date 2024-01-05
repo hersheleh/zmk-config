@@ -68,7 +68,6 @@
             tapping-term-ms = <200>;
 			bindings = <&mo>, <&to>;
         };
-
 		sh_td: shift_key_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -78,39 +77,45 @@
 		sym_num_td: symbol_number_tap_dance {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mo_to SYM DEFAULT>, <&tog NUM>;
+            tapping-term-ms = <400>;
+            bindings = <&mo SYM>, <&tog NUM>;
+        };
+		nav_td: nav_toggle_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <400>;
+            bindings = <&mo NAV>, <&tog NAV>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
         default_layer {
-            // ---------------------------------------------------------------------------------------------------------------------------------
-            // | TAB      | Q | W | E  | R  | T   |                                                   |   Y   | U    |   I   | O |  P  |  BSPC  |
-            // | CTRL/ESC | A | S | D  | F  | G   |                                                   |   H   | J    |   K   | L |  ;  |    '   |
-            // | LSHIFT   | Z | X | C  | V  | B   |    [    | L-SHIFT |            | L-SHIFT |   ]    |   N   | M    |   ,   | . |  /  | RSHIFT |
-            //                         | BT | DEL | CTL\SPC | ALT\RET | NAV |      | NUM/SYM | SH/RET | SPACE | DEL | R-ALT |
-            bindings = <
-            &kp TAB        &kp Q  &kp W    &kp E    &kp R &kp T                                                              &kp Y             &kp U     &kp I     &kp O   &kp P    &kp BSPC
-            &mt LCTRL ESC  &kp A  &kp S    &kp D    &kp F &kp G                                                              &kp H             &kp J     &kp K     &kp L   &kp SEMI &kp SQT
-            &sh_td         &kp Z  &kp X    &kp C    &kp V &kp B     &kp LBKT     &kp LSHFT    &kp RSHIFT         &kp RBKT    &kp N             &kp M     &kp COMMA &kp DOT &kp FSLH &sh_td
-                                  &mo BT   &kp LGUI &mt LCTL SPACE  &mt LALT RET MO_TOG(NAV)  &sym_num_td &lt NUM RET &kp SPACE &kp DEL &kp RALT
+            // -----------------------------------------------------------------------------------------------------------------------------------------
+            // | TAB      | Q | W | E  |   R   |    T    |                                                    |   Y   |  U  |   I   | O |  P  |  BSPC  |
+            // | CTRL/ESC | A | S | D  |   F   |    G    |                                                    |   H   |  J  |   K   | L |  ;  |    '   |
+            // | LSHIFT   | Z | X | C  |   V   |    B    |    [   | LSHFT |                |  RSHFT  |   ]    |   N   |  M  |   ,   | . |  /  | RSHIFT |
+            //                    | BT | SUPER | CTL\SPC | ALT\RET|  NAV  |                | NUM/SYM | SH/RET | SPACE | DEL | R-ALT |
+           bindings = <
+            &kp TAB        &kp Q  &kp W    &kp E    &kp R &kp T                                                     &kp Y     &kp U     &kp I     &kp O   &kp P    &kp BSPC
+            &mt LCTRL ESC  &kp A  &kp S    &kp D    &kp F &kp G                                                     &kp H     &kp J     &kp K     &kp L   &kp SEMI &kp SQT
+            &sh_td         &kp Z  &kp X    &kp C    &kp V &kp B     &kp LBKT     &kp LSHFT  &kp RSHIFT  &kp RBKT    &kp N     &kp M     &kp COMMA &kp DOT &kp FSLH &sh_td
+                                  &mo BT   &kp LGUI &mt LCTL SPACE  &mt LALT RET &nav_td    &sym_num_td &lt NUM RET &kp SPACE &kp DEL &kp RALT
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
 		numpad_layer {
         // -----------------------------------------------------------------------------------------------------------------------------------------
-        // |       |     |     |      |      |      |                                                |    | 7 |  8  | 9 | -  |     |
-        // |       |     |     |      |      |      |                                                | /  | 4 |  5  | 6 | +  | RET |
-        // |       |     |     |      |      |      |         |         |        |         |         | *  | 1 |  2  | 3 | /  |     |
+        // |       |     |     |      |      |      |                                                |    | 7 |  8  | 9 | 0  |     |
+        // |       |     |     |      |      |      |                                                | +  | 4 |  5  | 6 | *  |  =  |
+        // |       |     |     |      |      |      |         |         |        |         |         | -  | 1 |  2  | 3 | /  | RET |
         //                     |      |      |      |         |         |        |         |         |    | 0 | DEL |
         bindings = <
-        &trans   &trans   &trans   &trans     &trans   &trans                                 &kp SLASH   &kp N7 &kp N8 &kp N9 &kp MINUS &trans
-        &trans   &trans   &trans   &trans     &trans   &trans                                 &kp STAR &kp N4 &kp N5 &kp N6 &kp PLUS  &kp RET
-        &trans   &trans   &trans   &trans     &trans   &trans   &trans &trans   &trans &trans &trans   &kp N1 &kp N2 &kp N3  &kp SLASH   &trans
-                                   &trans     &trans   &trans   &trans &trans   &trans &trans &kp N0   &trans &trans
+        &trans   &trans   &trans   &trans     &trans   &trans                                 &kp SLASH &kp N7 &kp N8 &kp N9 &kp N0     &trans
+        &trans   &trans   &trans   &trans     &trans   &trans                                 &kp PLUS  &kp N4 &kp N5 &kp N6 &kp STAR   &kp EQUAL
+        &trans   &trans   &trans   &trans     &trans   &trans   &trans &trans   &trans &trans &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH  &kp RET
+                                   &trans     &trans   &trans   &trans &trans   &trans &trans &kp N0    &trans &trans
         >;
         };
 
