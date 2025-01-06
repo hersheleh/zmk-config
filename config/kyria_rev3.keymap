@@ -84,7 +84,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <400>;
-            bindings = <&mo NAV>, <&tog NAV>;
+            bindings = <&mo NAV>, <&to NAV>;
         };
     };
 
@@ -106,16 +106,16 @@
         };
 
 		numpad_layer {
-        // -----------------------------------------------------------------------------------------------------------------------------------------
-        // |       |     |     |      |      |      |                                                |    | 7 |  8  | 9 | 0  |     |
-        // |       |     |     |      |      |      |                                                | +  | 4 |  5  | 6 | *  |  =  |
-        // |       |     |     |      |      |      |         |         |        |         |         | -  | 1 |  2  | 3 | /  | RET |
-        //                     |      |      |      |         |         |        |         |         |    | 0 | DEL |
+			// -------------------------------------------------------------------------
+			// |   | ! |  |  |  |  |                    | /  | 7 |  8  | 9 | 0  |     |
+			// | @ |   |  |  |  |  |                    | +  | 4 |  5  | 6 | *  |  =  |
+			// |   |   |  |  |  |  |  |  |          | | | -  | 1 |  2  | 3 | /  | RET |
+			//                     |  |  |          | | |    |   |     |   | 0  | DEL |
         bindings = <
-        &trans   &trans   &trans   &trans     &trans   &trans                                 &kp SLASH &kp N7 &kp N8 &kp N9 &kp N0     &trans
-        &trans   &trans   &trans   &trans     &trans   &trans                                 &kp PLUS  &kp N4 &kp N5 &kp N6 &kp STAR   &kp EQUAL
-        &trans   &trans   &trans   &trans     &trans   &trans   &trans &trans   &trans &trans &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH  &kp RET
-                                   &trans     &trans   &trans   &trans &trans   &trans &trans &kp N0    &trans &trans
+        &trans   &trans   &trans   &trans     &trans   &trans                                             &kp SLASH &kp N7 &kp N8 &kp N9 &kp N0    &trans
+        &trans   &trans   &trans   &trans     &trans   &trans                                             &kp PLUS  &kp N4 &kp N5 &kp N6 &kp STAR  &kp EQUAL
+        &trans   &trans   &trans   &trans     &trans   &trans   &trans &trans   &trans             &trans &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH &kp RET
+                                   &trans     &trans   &trans   &trans &trans   &mo_to SYM DEFAULT &trans &kp N0    &trans &trans
         >;
         };
 
@@ -142,19 +142,19 @@
           // |       |     |     |      |      |      |    |     |    |         |         |       |       |       |        |         |      |
           //                     |      |      |      |    |     |    |         |         |       |       |       |
           bindings = <
-          &trans &trans   &trans &kp END &trans   &trans                                  &kp HOME  &kp PG_UP &kp UP   &kp PG_DN &kp C_VOL_UP &trans
-          &trans &kp HOME &trans &trans  &trans   &trans                                  &kp END   &kp LEFT  &kp DOWN &kp RIGHT &kp C_VOL_DN &trans
-          &trans &trans   &trans &trans  &trans   &trans  &trans &trans     &trans &trans &trans &trans   &trans &trans  &kp C_MUTE &trans
+          &trans &trans   &kp F7 &kp F8  &kp F9   &kp F12                                 &kp HOME  &kp PG_UP &kp UP   &kp PG_DN &kp C_VOL_UP &trans
+          &trans &kp HOME &kp F4 &kp F5  &kp F6   &kp F11                                 &kp END   &kp LEFT  &kp DOWN &kp RIGHT &kp C_VOL_DN &trans
+          &trans &trans   &kp F1 &kp F2  &kp F3   &kp F10 &trans &trans     &trans &trans &trans &trans   &trans &trans  &kp C_MUTE &trans
                                          &trans   &trans  &trans &trans     &trans &trans &trans &trans   &trans &trans
           >;
         };
 
         bluetooth_layer {
           // -------------------------------------------------------------------------------------------------------------------------------------------
-          // |       |     |     |      | BT_CLR |      |                                                |        |         |        |      |       |      |
-          // |       |     |     |      |        |      |                                                |        | BT_PRV  | BT_NXT |      |       |      |
-          // |       |     |     |      |        |      |         |         |        |         |         |        |         |        |      |
-          //                     |      |        |      |         |         |        |         |         |        |         |        |
+          // |       |     |     |      | BT_CLR |      |                                                |        |         | OUT_TOG |      |       |      |
+          // |       |     |     |      |        |      |                                                |        | BT_PRV  | BT_NXT  |      |       |      |
+          // |       |     |     |      |        |      |         |         |        |         |         |        |         |         |      |
+          //                     |      |        |      |         |         |        |         |         |        |         |         |
           bindings = <
             &trans &trans &trans &trans &bt BT_CLR &trans                                 &trans &trans      &out OUT_TOG &trans &trans &trans
             &trans &trans &trans &trans &trans     &trans                                 &trans &bt BT_PRV  &bt BT_NXT   &trans &trans &trans
