@@ -112,10 +112,10 @@
 			// |   |   |  |  |  |  |  |  |          | | | -  | 1 |  2  | 3 | /  | RET |
 			//                     |  |  |          | | |    |   |     |   | 0  | DEL |
         bindings = <
-        &trans   &trans   &trans   &trans     &trans   &trans                                             &kp SLASH &kp N7 &kp N8 &kp N9 &kp N0    &trans
-        &trans   &trans   &trans   &trans     &trans   &trans                                             &kp PLUS  &kp N4 &kp N5 &kp N6 &kp STAR  &kp EQUAL
-        &trans   &trans   &trans   &trans     &trans   &trans   &trans &trans   &trans             &trans &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH &kp RET
-                                   &trans     &trans   &trans   &trans &trans   &mo_to SYM DEFAULT &trans &kp N0    &trans &trans
+        &trans   &trans  &trans    &kp UP    &trans     &trans                                             &kp SLASH &kp N7 &kp N8 &kp N9 &kp N0    &trans
+        &trans   &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans                                             &kp PLUS  &kp N4 &kp N5 &kp N6 &kp STAR  &kp EQUAL
+        &trans   &trans  &trans    &trans    &trans     &trans   &trans &trans   &trans             &trans &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH &kp RET
+                                   &trans    &trans     &trans   &trans &trans   &mo_to SYM DEFAULT &trans &kp N0    &trans &trans
         >;
         };
 
@@ -174,6 +174,21 @@
           &trans &trans &trans &trans &trans &trans                                &trans &trans &trans &trans &trans &trans
           &trans &trans &trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans &trans &trans
                                       &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
+          >;
+
+        };
+
+        gaming_layer {
+          // -----------------------------------------------------------------------------------------------------------------------------------------
+          // |   |  |     |  ! |      |      |                                                |       |       |       |      |       |      |
+          // |   |  |     |    |      |      |                                                |       |       |       |      |       |      |
+          // |   |  |     |    |      |      |         |         |        |         |         |       |       |       |      |       |      |
+          //                      |      |      |      |         |         |        |         |         |       |       |       |
+          bindings = <
+          &trans &trans &trans &trans &trans &trans                                 &trans &trans &trans &trans &trans &trans
+          &trans &kp A  &kp W  &kp D  &trans &trans                                 &trans &trans &trans &trans &trans &trans
+          &trans &trans &kp S  &trans &trans &trans &trans &trans     &trans &trans &trans &trans &trans &trans &trans &trans
+                               &trans &trans &trans &trans &trans     &trans &trans &trans &trans &trans
           >;
 
         };
